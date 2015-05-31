@@ -7,6 +7,7 @@ import javax.imageio.ImageIO;
 
 import render.FrameSampler;
 import shading.DiffuseShader;
+import tracer.Tracer;
 
 //import mesh.ObjectLoader;
 
@@ -21,9 +22,10 @@ public class Main {
 
         RenderFrame rframe = new RenderFrame(w, h, im);
 
-        FrameSampler fs = new FrameSampler(new SceneA().generate());
-        fs.setSubsampling(2);
+        FrameSampler fs = new FrameSampler(new SceneB().generate());
+        fs.setSubsampling(6);
         DiffuseShader.setRaysCount(10);
+        Tracer.setMaxRefl(5);
         fs.render(im);
 
         rframe.setTitle("out.png");

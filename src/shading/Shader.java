@@ -15,7 +15,7 @@ public abstract class Shader {
 
     public abstract Ray[] reflectionRays(Intersection x);
 
-    public TraceResult shadeReflection(TraceResult[] tr) {
+    public TraceResult shadeReflection(Intersection x, Ray[] r, TraceResult[] tr) {
         Color[] cs = new Color[tr.length];
         float[] ws = new float[tr.length];
         float w = 0.0f;
@@ -25,10 +25,10 @@ public abstract class Shader {
             w += ws[i];
         }
         Color mix = ColorUtils.mix(cs, ws);
-        float[] a = mix.getColorComponents(null), b = c
-                .getColorComponents(null);
+        float[] a = mix.getColorComponents(null),
+                b = c.getColorComponents(null);
         for (int i = 0; i < a.length; i++)
-            a[i] *= b[i];
+            a[i] *= b[i] * r[i].direction.dot(x.norm);
         Color sub = new Color(a[0], a[1], a[2]);
         return new TraceResult(sub, w);
     }
