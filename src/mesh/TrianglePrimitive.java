@@ -38,7 +38,8 @@ public class TrianglePrimitive extends Primitive {
         float za = norm.dot(p1.sub(p0).vec(hit.sub(p0))) + 1e-6f,
               zb = norm.dot(p2.sub(p1).vec(hit.sub(p1))) + 1e-6f,
               zc = norm.dot(p0.sub(p2).vec(hit.sub(p2))) + 1e-6f;
-        if (za >= 0.0f && zb >= 0.0f && zc >= 0.0f)
+        if ((za >= 0.0f && zb >= 0.0f && zc >= 0.0f) ||
+            (za <= 0.0f && zb <= 0.0f && zc <= 0.0f))
             return new Intersection(this, r, hit, norm);
         return null;
     }
