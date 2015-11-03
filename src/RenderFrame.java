@@ -1,11 +1,8 @@
-import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.Timer;
+import javax.swing.*;
 
 public class RenderFrame extends JFrame {
 
@@ -22,14 +19,13 @@ public class RenderFrame extends JFrame {
         tm = new Timer(1000, e -> repaint());
         tm.start();
         setContentPane(new DrawPane());
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(w, h);
         setVisible(true);
     }
 
     class DrawPane extends JPanel {
         public void paintComponent(Graphics g) {
-            g.fillRect(20, 20, 100, 200);
             g.drawImage(im, 0, 0, w, h, null);
         }
     }
