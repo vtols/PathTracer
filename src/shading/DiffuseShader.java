@@ -29,12 +29,12 @@ public class DiffuseShader extends Shader {
             float u = r.nextFloat();
             float v = r.nextFloat();
             float th = (float) (2.0f * Math.PI * u);
-            float ph = (float) Math.acos(2.0f * v - 1);
+            float ph = (float) Math.acos(2.0f * v - 1.0f);
 
             /* Check this, maybe ph and th need to swap */
-            float x = (float) (Math.sin(th) * Math.cos(ph));
-            float y = (float) (Math.sin(th) * Math.sin(ph));
-            float z = (float) Math.cos(th);
+            float x = (float) (Math.sin(ph) * Math.cos(th));
+            float y = (float) (Math.sin(ph) * Math.sin(th));
+            float z = (float) Math.cos(ph);
             Vector3 w = new Vector3(x, y, z);
             if (w.dot(g.norm) < 0.0f)
                 w = w.scale(-1);
