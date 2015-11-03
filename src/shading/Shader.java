@@ -21,14 +21,14 @@ public abstract class Shader {
         float w = 0.0f;
         for (int i = 0; i < tr.length; i++) {
             cs[i] = tr[i].color;
-            ws[i] = tr[i].strength;
+            ws[i] = tr[i].strength * r[i].direction.dot(x.norm);
             w += ws[i];
         }
         Color mix = ColorUtils.mix(cs, ws);
         float[] a = mix.getColorComponents(null),
                 b = c.getColorComponents(null);
         for (int i = 0; i < a.length; i++)
-            a[i] *= b[i] * r[i].direction.dot(x.norm);
+            a[i] *= b[i];
         Color sub = new Color(a[0], a[1], a[2]);
         return new TraceResult(sub, w);
     }
