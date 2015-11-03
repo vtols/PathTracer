@@ -12,14 +12,6 @@ public class RenderFrame extends JFrame {
     private Image im;
     private Timer tm;
     int w, h;
-    ActionListener lis = new ActionListener() {
-
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            repaint();
-        }
-
-    };
 
     public RenderFrame(int w, int h, Image im) {
         super("Rendering Scene...");
@@ -27,7 +19,7 @@ public class RenderFrame extends JFrame {
         this.h = h;
         this.im = im;
 
-        tm = new Timer(1000, lis);
+        tm = new Timer(1000, e -> repaint());
         tm.start();
         setContentPane(new DrawPane());
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
