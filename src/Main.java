@@ -24,7 +24,7 @@ public class Main {
 
         FrameSampler fs = new FrameSampler(new SceneB().generate());
         fs.setSubsampling(6);
-        DiffuseShader.setRaysCount(10);
+        DiffuseShader.setRaysCount(3);
         Tracer.setMaxRefl(5);
         fs.render(im);
 
