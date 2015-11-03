@@ -9,15 +9,17 @@ public class TrianglePrimitive extends Primitive {
     private Vector3 p0, p1, p2, n;
 
     public TrianglePrimitive(Vector3 a, Vector3 b, Vector3 c) {
-        p0 = a;
-        p1 = b;
-        p2 = c;
-        if (p1.sub(p0).dot(p2.sub(p1)) > 0.0f) {
-            Vector3 t = p1;
-            p1 = p2;
-            p2 = t;
-        }
         n = b.sub(a).vec(c.sub(a)).orth();
+
+        if (n.dot(b.sub(a).vec(c.sub(b))) > 0.0f) {
+            p0 = a;
+            p2 = c;
+        } else {
+            p0 = c;
+            p2 = a;
+        }
+
+        p1 = b;
     }
 
     @Override
@@ -38,8 +40,7 @@ public class TrianglePrimitive extends Primitive {
         float za = norm.dot(p1.sub(p0).vec(hit.sub(p0))) + 1e-6f,
               zb = norm.dot(p2.sub(p1).vec(hit.sub(p1))) + 1e-6f,
               zc = norm.dot(p0.sub(p2).vec(hit.sub(p2))) + 1e-6f;
-        if ((za >= 0.0f && zb >= 0.0f && zc >= 0.0f) ||
-            (za <= 0.0f && zb <= 0.0f && zc <= 0.0f))
+        if (za >= 0.0f && zb >= 0.0f && zc >= 0.0f)
             return new Intersection(this, r, hit, norm);
         return null;
     }
