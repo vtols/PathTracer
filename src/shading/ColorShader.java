@@ -7,7 +7,7 @@ import java.awt.Color;
 
 import tracer.TraceResult;
 
-public class ColorShader extends Shader {
+public class ColorShader implements Shader {
 
     private Color c;
     private float strength = 30.0f;

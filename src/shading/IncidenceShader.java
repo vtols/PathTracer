@@ -7,7 +7,7 @@ import java.awt.Color;
 
 import tracer.TraceResult;
 
-public class IncidenceShader extends Shader {
+public class IncidenceShader implements Shader {
 
     @Override
     public TraceResult shade(Intersection x, Ray pass, TraceResult tr) {

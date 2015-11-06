@@ -5,7 +5,7 @@ import geom.Ray;
 
 import tracer.TraceResult;
 
-public class MirrorShader extends Shader {
+public class MirrorShader implements Shader {
 
     @Override
     public TraceResult shade(Intersection x, Ray pass, TraceResult tr) {

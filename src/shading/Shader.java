@@ -7,12 +7,10 @@ import java.awt.Color;
 
 import tracer.TraceResult;
 
-public abstract class Shader {
+public interface Shader {
 
-    private Color c = Color.WHITE;
+    TraceResult shade(Intersection x, Ray pass, TraceResult tr);
 
-    public abstract TraceResult shade(Intersection x, Ray pass, TraceResult tr);
-
-    public abstract Ray pass(Intersection x);
+    Ray pass(Intersection x);
 
 }

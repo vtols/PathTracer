@@ -8,7 +8,7 @@ import java.util.Random;
 
 import tracer.TraceResult;
 
-public class DiffuseShader extends Shader {
+public class DiffuseShader implements Shader {
 
     private static final Random random = new Random(1777);
 
