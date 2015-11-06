@@ -8,15 +8,14 @@ import tracer.TraceResult;
 public class MirrorShader extends Shader {
 
     @Override
-    public TraceResult shade(Intersection x) {
-        return null;
+    public TraceResult shade(Intersection x, Ray pass, TraceResult tr) {
+        tr.multiply(0.85f);
+        return tr;
     }
 
     @Override
-    public Ray[] reflectionRays(Intersection x) {
-        Ray[] rs = new Ray[1];
-        rs[0] = x.primaryReflection();
-        return rs;
+    public Ray pass(Intersection x) {
+        return x.primaryReflection();
     }
 
 }
