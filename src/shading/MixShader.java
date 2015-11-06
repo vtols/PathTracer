@@ -34,9 +34,12 @@ public class MixShader implements Shader {
     @Override
     public Pass pass(Intersection x) {
         float selection = random.nextFloat();
+        Pass result;
         if (selection < mixCoefficient)
-            return first.pass(x);
+            result = first.pass(x);
         else
-            return second.pass(x);
+            result = second.pass(x);
+        result.save = false;
+        return result;
     }
 }

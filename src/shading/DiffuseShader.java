@@ -14,8 +14,7 @@ public class DiffuseShader implements Shader {
 
     @Override
     public TraceResult shade(Intersection x, Ray pass, TraceResult tr) {
-        tr.multiply(0.85f * pass.direction.dot(x.norm));
-        return tr;
+        return tr.multiply(0.85f * pass.direction.dot(x.norm));
     }
 
     @Override
@@ -35,7 +34,7 @@ public class DiffuseShader implements Shader {
         if (w.dot(g.norm) < 0.0f)
             w = w.scale(-1);
 
-        return new Pass(this, new Ray(g.hit, w));
+        return new Pass(this, new Ray(g.hit, w), false);
     }
 
 }

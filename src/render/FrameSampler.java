@@ -33,6 +33,10 @@ public class FrameSampler {
         rays = k;
     }
 
+    public void setMaxRefl(int k) {
+        t.setMaxRefl(k);
+    }
+
     public void render(BufferedImage im) {
         int w = im.getWidth(), h = im.getHeight();
 
@@ -50,13 +54,15 @@ public class FrameSampler {
         float sr = 0, sg = 0, sb = 0;
         for (int si = 0; si < aa; si++)
             for (int sj = 0; sj < aa; sj++) {
+                t.canSave();
+                Ray from = getRay(w, h, i + si * dx, j + sj * dx);
                 for (int k = 0; k < rays; k++) {
-                    Ray from = getRay(w, h, i + si * dx, j + sj * dx);
                     TraceResult tr = t.trace(from);
                     sr += tr.getRed();
                     sg += tr.getGreen();
                     sb += tr.getBlue();
                 }
+                t.reset();
             }
         float r = sr / (aa * aa * rays),
               g = sg / (aa * aa * rays),

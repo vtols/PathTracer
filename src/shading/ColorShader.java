@@ -23,7 +23,7 @@ public class ColorShader implements Shader {
 
     @Override
     public Pass pass(Intersection x) {
-        return new Pass(this, null);
+        return new Pass(this, null, true);
     }
 
 }

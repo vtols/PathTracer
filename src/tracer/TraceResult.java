@@ -12,8 +12,16 @@ public class TraceResult {
         strengthMultiplier = s;
     }
 
-    public void multiply(float value) {
-        strengthMultiplier *= value;
+    public TraceResult(float[] strength, float mul) {
+        strengthRGB = strength;
+        strengthMultiplier = mul;
+    }
+
+    public TraceResult multiply(float value) {
+        TraceResult tr = new TraceResult(strengthRGB, strengthMultiplier);
+        tr.strengthMultiplier *= value;
+
+        return tr;
     }
 
     public float getRed() {
