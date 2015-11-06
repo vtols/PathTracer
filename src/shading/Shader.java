@@ -11,6 +11,6 @@ public interface Shader {
 
     TraceResult shade(Intersection x, Ray pass, TraceResult tr);
 
-    Ray pass(Intersection x);
+    Pass pass(Intersection x);
 
 }

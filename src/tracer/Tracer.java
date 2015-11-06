@@ -6,6 +6,8 @@ import geom.Ray;
 import java.awt.Color;
 
 import mesh.Mesh;
+import shading.Pass;
+import shading.Shader;
 import view.Scene;
 
 public class Tracer {
@@ -29,10 +31,12 @@ public class Tracer {
         Intersection near = Intersection.nearest(s.obj, from);
         if (near != null) {
             Mesh m = (Mesh) near.obj;
-            Ray pass = m.getShader().pass(near);
-            if (pass != null)
-                tr = trace(pass, reflCount + 1);
-            tr = m.getShader().shade(near, pass, tr);
+            Pass pass = m.getShader().pass(near);
+            Shader shader = pass.s;
+            Ray ray = pass.r;
+            if (ray != null)
+                tr = trace(ray, reflCount + 1);
+            tr = shader.shade(near, ray, tr);
         }
         return tr;
     }

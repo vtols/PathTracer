@@ -19,7 +19,7 @@ public class DiffuseShader implements Shader {
     }
 
     @Override
-    public Ray pass(Intersection g) {
+    public Pass pass(Intersection g) {
         float u = random.nextFloat();
         float v = random.nextFloat();
 
@@ -35,7 +35,7 @@ public class DiffuseShader implements Shader {
         if (w.dot(g.norm) < 0.0f)
             w = w.scale(-1);
 
-        return new Ray(g.hit, w);
+        return new Pass(this, new Ray(g.hit, w));
     }
 
 }

@@ -14,8 +14,8 @@ public class MirrorShader implements Shader {
     }
 
     @Override
-    public Ray pass(Intersection x) {
-        return x.primaryReflection();
+    public Pass pass(Intersection x) {
+        return new Pass(this, x.primaryReflection());
     }
 
 }

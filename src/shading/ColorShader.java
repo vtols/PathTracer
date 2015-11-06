@@ -22,8 +22,8 @@ public class ColorShader implements Shader {
     }
 
     @Override
-    public Ray pass(Intersection x) {
-        return null;
+    public Pass pass(Intersection x) {
+        return new Pass(this, null);
     }
 
 }
